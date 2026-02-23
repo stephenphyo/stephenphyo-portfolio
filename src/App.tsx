@@ -67,8 +67,6 @@ const App = () => {
   return (
     <div className="app-shell min-h-screen text-ink-900 dark:text-ink-50">
       <div className="site-bg pattern-4" aria-hidden="true">
-        <div className="grid-left" />
-        <div className="grid-right" />
       </div>
       <div className="app-content">
         <Navbar navItems={portfolioData.nav} activeId={activeId} brand={portfolioData.meta.initials} />

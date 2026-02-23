@@ -120,7 +120,6 @@ export const portfolioData = {
     ctas: [
       { label: 'View Projects', href: '#projects', variant: 'primary' },
       { label: 'Download Resume', href: '/resume.pdf', variant: 'outline' },
-      // { label: 'Contact', href: '#contact', variant: 'ghost' }
     ],
     socials: [
       { label: 'GitHub', url: 'https://github.com/', icon: 'github' },
@@ -247,8 +246,8 @@ export const portfolioData = {
     {
       category: 'DevOps',
       skills: [
-        { name: 'Docker', logo: dockerLogo/*, level: 'Advanced'*/ },
-        { name: 'Kubernetes', logo: kubernetesLogo/*, level: 'Intermediate', note: 'Helm, autoscaling, observability.'*/ },
+        { name: 'Docker', logo: dockerLogo },
+        { name: 'Kubernetes', logo: kubernetesLogo },
         { name: 'Jenkins', logo: jenkinsLogo },
         { name: 'GitLab CI/CD', logo: gitlabLogo },
       ]
@@ -276,11 +275,11 @@ export const portfolioData = {
     {
       category: 'Databases',
       skills: [
-        { name: 'Microsoft SQL', logo: microsoftsqlLogo/*, level: 'Advanced'*/ },
-        { name: 'PostgreSQL', logo: postgresLogo/*, level: 'Advanced'*/ },
-        { name: 'Oracle SQL', logo: oraclesqlLogo/*, level: 'Advanced'*/ },
-        { name: 'MySQL', logo: mysqlLogo/*, level: 'Advanced'*/ },
-        { name: 'MongoDB', logo: mongodbLogo/*, level: 'Advanced'*/ },
+        { name: 'Microsoft SQL', logo: microsoftsqlLogo },
+        { name: 'PostgreSQL', logo: postgresLogo },
+        { name: 'Oracle SQL', logo: oraclesqlLogo },
+        { name: 'MySQL', logo: mysqlLogo },
+        { name: 'MongoDB', logo: mongodbLogo },
       ]
     },
   ] satisfies SkillCategory[],
