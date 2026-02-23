@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import type { Project } from '@/data/portfolio';
+import type { Project } from '@/data/types';
 
 type ProjectModalProps = {
   project: Project | null;

@@ -1,4 +1,4 @@
-import type { Certificate } from '@/data/portfolio';
+import type { Certificate } from '@/data/types';
 
 type CertificatesGridProps = {
   certificates: Certificate[];

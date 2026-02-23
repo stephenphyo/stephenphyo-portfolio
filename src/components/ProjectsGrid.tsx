@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import type { Project } from '@/data/portfolio';
+import type { Project } from '@/data/types';
 
 type ProjectsGridProps = {
   projects: Project[];

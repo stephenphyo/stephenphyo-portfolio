@@ -1,4 +1,4 @@
-import type { SkillCategory } from '@/data/portfolio';
+import type { SkillCategory } from '@/data/types';
 import SkillBadge from './SkillBadge';
 
 type SkillsGridProps = {

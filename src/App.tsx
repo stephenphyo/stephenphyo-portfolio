@@ -11,7 +11,7 @@ import ContactForm from '@/components/ContactForm';
 import SocialIcons from '@/components/SocialIcons';
 import useReveal from '@/components/useReveal';
 import { portfolioData } from '@/data/portfolio';
-import type { Project } from '@/data/portfolio';
+import type { Project } from '@/data/types';
 
 const THEME_KEY = 'portfolio-theme';
 
@@ -21,7 +21,13 @@ const App = () => {
   const [showTop, setShowTop] = useState(false);
   const { ref: heroRef, isVisible: heroVisible } = useReveal({ threshold: 0.1 });
 
-  const sectionIds = useMemo(() => portfolioData.nav.map((item) => item.id), []);
+  const sectionIds = useMemo(
+    () =>
+      portfolioData.nav
+        .filter((item) => (item.id === 'projects' ? portfolioData.flags.showProjects : true))
+        .map((item) => item.id),
+    []
+  );
 
   useEffect(() => {
     const stored = window.localStorage.getItem(THEME_KEY);
@@ -69,7 +75,15 @@ const App = () => {
       <div className="site-bg pattern-4" aria-hidden="true">
       </div>
       <div className="app-content">
-        <Navbar navItems={portfolioData.nav} activeId={activeId} brand={portfolioData.meta.initials} />
+        <Navbar
+          navItems={
+            portfolioData.flags.showProjects
+              ? portfolioData.nav
+              : portfolioData.nav.filter((item) => item.id !== 'projects')
+          }
+          activeId={activeId}
+          brand={portfolioData.meta.initials}
+        />
         <main>
         <section id="hero" className="section-gradient scroll-mt-24">
           <div
@@ -80,15 +94,43 @@ const App = () => {
           >
             <div className="flex-1">
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-teal-500">{portfolioData.meta.title}</p>
-              <h1 className="mt-4 text-4xl font-sans font-semibold text-ink-900 dark:text-ink-50 sm:text-5xl lg:text-6xl">
-                {portfolioData.meta.name}
-              </h1>
+              <div className="mt-4 inline-flex flex-col items-start">
+                <h1 className="text-4xl font-sans font-semibold text-ink-900 dark:text-ink-50 sm:text-5xl lg:text-6xl">
+                  {portfolioData.meta.name}
+                </h1>
+                <div className="mt-2 inline-flex flex-col items-start pb-2">
+                  <span className="text-2xl font-sans font-semibold italic text-ink-700 dark:text-ink-200">
+                    {portfolioData.meta.fullName}
+                  </span>
+                </div>
+              </div>
               <p className="mt-4 max-w-xl text-lg text-ink-600 dark:text-ink-200">
                 {portfolioData.meta.tagline}
               </p>
-              <p className="mt-2 text-sm text-ink-500 dark:text-ink-300">{portfolioData.meta.location}</p>
+              <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-ink-500 dark:text-ink-300">
+                <div className="flex items-center gap-2">
+                  <svg viewBox="0 0 24 24" className="h-4 w-4 text-cyan-500" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"
+                    />
+                  </svg>
+                  <span>{portfolioData.hero.details.location}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg viewBox="0 0 24 24" className="h-4 w-4 text-cyan-500" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1v3.5a1 1 0 0 1-1 1C10.4 22 2 13.6 2 3.5a1 1 0 0 1 1-1H6.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2Z"
+                    />
+                  </svg>
+                  <span>{portfolioData.hero.details.phone}</span>
+                </div>
+              </div>
               <div className="mt-6 flex flex-wrap gap-3">
-                {portfolioData.hero.ctas.map((cta) => {
+                {portfolioData.hero.ctas
+                  .filter((cta) => (cta.href === '#projects' ? portfolioData.flags.showProjects : true))
+                  .map((cta) => {
                   const base = 'focus-ring btn';
                   if (cta.variant === 'primary') {
                     return (
@@ -127,27 +169,29 @@ const App = () => {
                 <SocialIcons links={portfolioData.hero.socials} />
               </div>
             </div>
-            <div className="flex-1 rounded-3xl p-8 glass-panel">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-teal-500">
-                {portfolioData.hero.spotlight.eyebrow}
-              </p>
-              <h2 className="mt-3 text-2xl font-sans font-semibold text-ink-900 dark:text-ink-50">
-                {portfolioData.hero.spotlight.title}
-              </h2>
-              <p className="mt-4 text-sm text-ink-500 dark:text-ink-200">
-                {portfolioData.hero.spotlight.description}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                {portfolioData.hero.spotlight.highlights.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-2xl border border-ink-200/60 px-4 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-ink-600 dark:border-ink-800 dark:text-ink-300"
-                  >
-                    {item}
-                  </div>
-                ))}
+            {portfolioData.flags.showHeroSpotlight ? (
+              <div className="flex-1 rounded-3xl p-8 glass-panel">
+                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-teal-500">
+                  {portfolioData.hero.spotlight.eyebrow}
+                </p>
+                <h2 className="mt-3 text-2xl font-sans font-semibold text-ink-900 dark:text-ink-50">
+                  {portfolioData.hero.spotlight.title}
+                </h2>
+                <p className="mt-4 text-sm text-ink-500 dark:text-ink-200">
+                  {portfolioData.hero.spotlight.description}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {portfolioData.hero.spotlight.highlights.map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-2xl border border-ink-200/60 px-4 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-ink-600 dark:border-ink-800 dark:text-ink-300"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            ) : null}
           </div>
         </section>
 
@@ -159,14 +203,6 @@ const App = () => {
           subtitle={portfolioData.sections.experience.subtitle}
         >
           <ExperienceTimeline items={portfolioData.experience} />
-        </Section>
-
-        <Section
-          id="education"
-          title={portfolioData.sections.education.title}
-          subtitle={portfolioData.sections.education.subtitle}
-        >
-          <EducationTimeline items={portfolioData.education} />
         </Section>
 
         <Section
@@ -187,12 +223,22 @@ const App = () => {
         </Section>
 
         <Section
-          id="projects"
-          title={portfolioData.sections.projects.title}
-          subtitle={portfolioData.sections.projects.subtitle}
+          id="education"
+          title={portfolioData.sections.education.title}
+          subtitle={portfolioData.sections.education.subtitle}
         >
-          <ProjectsGrid projects={portfolioData.projects} onSelect={setSelectedProject} />
+          <EducationTimeline items={portfolioData.education} />
         </Section>
+
+        {portfolioData.flags.showProjects ? (
+          <Section
+            id="projects"
+            title={portfolioData.sections.projects.title}
+            subtitle={portfolioData.sections.projects.subtitle}
+          >
+            <ProjectsGrid projects={portfolioData.projects} onSelect={setSelectedProject} />
+          </Section>
+        ) : null}
 
         <Section
           id="contact"

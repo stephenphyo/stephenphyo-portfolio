@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import type { SocialLink } from '@/data/portfolio';
+import type { SocialLink } from '@/data/types';
 
 type SocialIconsProps = {
   links: SocialLink[];

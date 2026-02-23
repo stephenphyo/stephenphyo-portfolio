@@ -1,4 +1,4 @@
-import type { Skill } from '@/data/portfolio';
+import type { Skill } from '@/data/types';
 
 type SkillBadgeProps = {
   skill: Skill;

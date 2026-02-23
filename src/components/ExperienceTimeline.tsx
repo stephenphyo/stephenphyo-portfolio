@@ -1,4 +1,4 @@
-import type { Experience } from '@/data/portfolio';
+import type { Experience } from '@/data/types';
 
 type ExperienceTimelineProps = {
   items: Experience[];

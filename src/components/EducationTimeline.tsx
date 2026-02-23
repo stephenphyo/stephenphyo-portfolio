@@ -1,4 +1,4 @@
-import type { Education } from '@/data/portfolio';
+import type { Education } from '@/data/types';
 
 type EducationTimelineProps = {
   items: Education[];

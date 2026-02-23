@@ -1,10 +1,11 @@
 import awsLogo from '@/assets/skills/aws.png';
+import azureLogo from '@/assets/skills/azure.png';
 import dockerLogo from '@/assets/skills/docker.png';
 import kubernetesLogo from '@/assets/skills/kubernetes.png';
 import jenkinsLogo from '@/assets/skills/jenkins.png';
 import gitlabLogo from '@/assets/skills/gitlab.png';
 import terraformLogo from '@/assets/skills/terraform.png';
-import reactLogo from '@/assets/skills/react.svg';
+import reactLogo from '@/assets/skills/react.png';
 import nodeLogo from '@/assets/skills/node.png';
 import postgresLogo from '@/assets/skills/postgres.png';
 import pythonLogo from '@/assets/skills/python.png';
@@ -26,93 +27,34 @@ import atlasThumb from '@/assets/projects/atlas.svg';
 import novaThumb from '@/assets/projects/nova.svg';
 import signalThumb from '@/assets/projects/signal.svg';
 
-export type NavItem = {
-  id: string;
-  label: string;
-};
-
-export type SocialLink = {
-  label: string;
-  url: string;
-  icon: 'github' | 'linkedin' | 'email';
-};
-
-export type Experience = {
-  role: string;
-  company: string;
-  companyLogo?: string;
-  dates: string;
-  location: string;
-  highlights: string[];
-  tech: string[];
-  link?: string;
-  showVisit?: boolean;
-};
-
-export type Education = {
-  program: string;
-  school: string;
-  dates: string;
-  location: string;
-  highlights: string[];
-  focus: string[];
-  link?: string;
-};
-
-export type Skill = {
-  name: string;
-  logo: string;
-  level?: string;
-  note?: string;
-};
-
-export type SkillCategory = {
-  category: string;
-  skills: Skill[];
-};
-
-export type Certificate = {
-  name: string;
-  issuer: string;
-  date: string;
-  credentialId?: string;
-  verifyUrl: string;
-  logo?: string;
-  image: string;
-};
-
-export type Project = {
-  title: string;
-  description: string;
-  longDescription: string;
-  thumbnail?: string;
-  tags: string[];
-  links: {
-    live?: string;
-    repo?: string;
-    caseStudy?: string;
-  };
-  results: string[];
-  stack: string[];
-  category: string;
-};
+import type {
+  Certificate,
+  Education,
+  Experience,
+  NavItem,
+  Project,
+  SkillCategory,
+  SocialLink
+} from './types';
 
 export const portfolioData = {
+  flags: {
+    showProjects: false,
+    showHeroSpotlight: true
+  },
   meta: {
     name: 'Stephen Phyo',
+    fullName: 'Phyo Aung Kyaw',
     initials: 'Stephen\'s Portfolio',
     title: 'Software Developer',
-    tagline: 'Building cloud-native products, data pipelines, and resilient frontends.',
-    location: 'Singapore',
-    description:
-      'Alex Morgan is a software developer focused on cloud-native apps, infrastructure automation, and design-driven web experiences.'
+    tagline: 'Building cloud-native products, data pipelines, and resilient frontends.'
   },
   nav: [
     { id: 'hero', label: 'Home' },
     { id: 'experience', label: 'Experience' },
-    { id: 'education', label: 'Education' },
     { id: 'skills', label: 'Skills' },
     { id: 'certificates', label: 'Certificates' },
+    { id: 'education', label: 'Education' },
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' }
   ] satisfies NavItem[],
@@ -123,7 +65,7 @@ export const portfolioData = {
     ],
     socials: [
       { label: 'GitHub', url: 'https://github.com/', icon: 'github' },
-      { label: 'LinkedIn', url: 'https://www.linkedin.com/', icon: 'linkedin' },
+      { label: 'LinkedIn', url: 'https://www.linkedin.com/in/stephenphyo/', icon: 'linkedin' },
       { label: 'Email', url: 'mailto:hello@alexmorgan.dev', icon: 'email' }
     ] satisfies SocialLink[],
     spotlight: {
@@ -132,6 +74,10 @@ export const portfolioData = {
       description:
         'I collaborate with product, design, and data teams to ship resilient systems, tidy UI, and measurable impact.',
       highlights: ['Cloud Native', 'Observability', 'UI Systems']
+    },
+    details: {
+      location: 'Singapore, SG',
+      phone: '+65 8174 9880'
     }
   },
   sections: {
@@ -240,7 +186,8 @@ export const portfolioData = {
     {
       category: 'Cloud Technologies',
       skills: [
-        { name: 'AWS', logo: awsLogo, level: 'Advanced', note: 'Compute, storage, IAM, and networking.' },
+        { name: 'AWS', logo: awsLogo/*, level: 'Advanced', note: 'Compute, storage, IAM, and networking.'*/ },
+        { name: 'Microsoft Azure', logo: azureLogo },
       ]
     },
     {

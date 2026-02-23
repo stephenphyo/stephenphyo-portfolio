@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
-import type { NavItem } from '@/data/portfolio';
+import type { NavItem } from '@/data/types';
 
 type NavbarProps = {
   navItems: NavItem[];
