@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1200" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+      <feMerge>
+        <feMergeNode in="coloredBlur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="none" />
+  <g stroke="#00c8ff" stroke-opacity="0.85" stroke-width="2" filter="url(#glow)">
+    <line x1="120" y1="1200" x2="1000" y2="260" />
+    <line x1="240" y1="1200" x2="1000" y2="260" />
+    <line x1="360" y1="1200" x2="1000" y2="260" />
+    <line x1="480" y1="1200" x2="1000" y2="260" />
+    <line x1="600" y1="1200" x2="1000" y2="260" />
+    <line x1="720" y1="1200" x2="1000" y2="260" />
+    <line x1="840" y1="1200" x2="1000" y2="260" />
+    <line x1="960" y1="1200" x2="1000" y2="260" />
+    <line x1="1040" y1="1200" x2="1000" y2="260" />
+    <line x1="1160" y1="1200" x2="1000" y2="260" />
+    <line x1="1280" y1="1200" x2="1000" y2="260" />
+    <line x1="1400" y1="1200" x2="1000" y2="260" />
+    <line x1="1520" y1="1200" x2="1000" y2="260" />
+    <line x1="1640" y1="1200" x2="1000" y2="260" />
+    <line x1="1760" y1="1200" x2="1000" y2="260" />
+    <line x1="1880" y1="1200" x2="1000" y2="260" />
+  </g>
+  <g stroke="#00c8ff" stroke-opacity="0.65" stroke-width="2" filter="url(#glow)">
+    <line x1="930" y1="300" x2="1070" y2="300" />
+    <line x1="880" y1="360" x2="1120" y2="360" />
+    <line x1="820" y1="440" x2="1180" y2="440" />
+    <line x1="740" y1="540" x2="1260" y2="540" />
+    <line x1="660" y1="660" x2="1340" y2="660" />
+    <line x1="560" y1="800" x2="1440" y2="800" />
+    <line x1="440" y1="980" x2="1560" y2="980" />
+    <line x1="300" y1="1200" x2="1700" y2="1200" />
+  </g>
+</svg>
