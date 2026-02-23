@@ -34,7 +34,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'aws-alpha-23-jenkins-01', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
                     sh '''
                         aws --version
-                        aws s3 sync build s3://$AWS_BUCKET_NAME
+                        aws s3 sync dist s3://$AWS_BUCKET_NAME
                     '''
                 }
             }
